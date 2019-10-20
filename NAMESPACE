@@ -2,6 +2,7 @@
 
 export(check_py_script)
 export(convert)
+export(download_scrobbles)
 export(fetch_tracks)
 export(find_py_script)
 export(install_scrobble_script)

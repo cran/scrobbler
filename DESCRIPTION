@@ -1,7 +1,7 @@
 Package: scrobbler
 Type: Package
 Title: Download 'Scrobbles' from 'Last.fm'
-Version: 0.1.0
+Version: 0.2.12
 Author: Conor Neilson
 Maintainer: Conor Neilson <condwanaland@gmail.com>
 Description: 'Last.fm'<https://www.last.fm> is a music platform focussed on building a 
@@ -17,9 +17,9 @@ RoxygenNote: 6.1.1
 Suggests: testthat, knitr, rmarkdown
 URL: https://github.com/condwanaland/scrobbler
 BugReports: https://github.com/condwanaland/scrobbler/issues
-Imports: anytime
+Imports: anytime, httr, jsonlite
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-01-03 10:49:40 UTC; apple
+Packaged: 2019-10-20 21:07:36 UTC; apple
 Repository: CRAN
-Date/Publication: 2019-01-08 16:40:06 UTC
+Date/Publication: 2019-10-20 21:20:02 UTC
