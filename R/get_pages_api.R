@@ -22,6 +22,59 @@ download_scrobbles <- function(username, api_key){
   # Use total page info to construct one URL for each page
   all_urls <- construct_urls(total_pages, username, api_key)
 
+  # Run the downloads
+  long_data <- run_downloads(total_pages, all_urls)
+
+}
+
+#' update_scrobbles
+#'
+#' Companion function to `download_scrobbles`. Only downloads the scrobbles that have been
+#' stored since you ran `download_scrobbles`.
+#'
+#' @param data A dataframe outputted by `download_scrobbles`
+#' @param timestamp_column The `date_unix` column in your dataframe
+#' @param username Last.fm API username
+#' @param api_key Last.fm API key
+#'
+#' @return A dataframe
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' mydat <- download_scrobbles(username = "your_username", api_key = "your_api_key")
+#' update_dat <- update_scrobbles(mydat,
+#'     "date_unix",
+#'     username = "your_username",
+#'     api_key = "your_api_key")
+#' }
+update_scrobbles <- function(data, timestamp_column, username, api_key){
+  last_timestamp <- get_last_timestamp(data, timestamp_column)
+
+  print(last_timestamp)
+  total_pages <- get_total_pages(username, api_key, from = last_timestamp)[[1]]
+  print(total_pages)
+
+  all_urls <- construct_urls(total_pages, username, api_key, from = last_timestamp)
+  print(all_urls)
+
+  long_data <- run_downloads(total_pages, all_urls)
+
+  all_data <- rbind(data, long_data)
+
+  return(all_data)
+
+}
+
+
+#' run_downloads
+#'
+#' @param total_pages Total number of pages your scrobbles is spread over
+#' @param all_urls The output of `construct_urls`
+#'
+#' @return
+#' @noRd
+run_downloads <- function(total_pages, all_urls){
   # Initialise a vector of 1 to total number of pages. Used for the progress counter
   counter <- seq_along(1:total_pages)
 
@@ -60,7 +113,7 @@ download_scrobbles <- function(username, api_key){
   long_data$image <- NULL
   long_data$streamable <- NULL
   long_data$url <- NULL
-  long_data$date.uts <- NULL
+  #long_data$date.uts <- NULL
 
   # Set useful names
   long_data <- rename_api_response(long_data)
