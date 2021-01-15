@@ -1,4 +1,12 @@
-# scrobbler 0.2.13.9000
+# scrobbler 1.0.1
+
+* scrobbler now has better authentication options through environment variables. You can set the 'LASTFM_API_USERNAME' and 'LASTFM_API_KEY' variables to avoid having to pass these everytime.
+
+* Any functions for setting up and running scrobble downloads by using python scripts have been removed. Going via the Last.fm API is now the only officially supported method.
+
+* Removed the old python vignette, and added two new ones describing the updated workflow.
+
+# scrobbler 0.2.15
 
 * Added a `NEWS.md` file to track changes to the package.
 

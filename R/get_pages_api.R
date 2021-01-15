@@ -3,17 +3,18 @@
 #' @param username Your last.fm account username
 #' @param api_key Your last.fm account api key
 #'
-#' @return A dataframe of songs and assoicated metadata
+#' @return A dataframe of songs and associated metadata
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' download_scrobbles(username = "your_username", api_key = "your_api_key")
 #' }
-
-download_scrobbles <- function(username, api_key){
+download_scrobbles <- function(username = get_lastfm_credentials('username'),
+                               api_key = get_lastfm_credentials('key')){
 
   # Call the API, extract the total number of pages, store in variable
+  print(username)
   tracks <- get_total_pages(username, api_key)
   total_pages = tracks[[1]]
   print(paste("Total number of pages:", total_pages))
@@ -48,10 +49,15 @@ download_scrobbles <- function(username, api_key){
 #'     username = "your_username",
 #'     api_key = "your_api_key")
 #' }
-update_scrobbles <- function(data, timestamp_column, username, api_key){
+update_scrobbles <- function(data,
+                             timestamp_column,
+                             username = get_lastfm_credentials('username'),
+                             api_key = get_lastfm_credentials('key')){
+
   last_timestamp <- get_last_timestamp(data, timestamp_column)
 
-  print(last_timestamp)
+  print(username)
+  print(api_key)
   total_pages <- get_total_pages(username, api_key, from = last_timestamp)[[1]]
   print(total_pages)
 
@@ -113,6 +119,8 @@ run_downloads <- function(total_pages, all_urls){
   long_data$image <- NULL
   long_data$streamable <- NULL
   long_data$url <- NULL
+  long_data$X.attr.nowplaying <- NULL
+  rownames(long_data) <- NULL
   #long_data$date.uts <- NULL
 
   # Set useful names

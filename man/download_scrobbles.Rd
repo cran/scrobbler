@@ -4,7 +4,10 @@
 \alias{download_scrobbles}
 \title{download_scrobbles}
 \usage{
-download_scrobbles(username, api_key)
+download_scrobbles(
+  username = get_lastfm_credentials("username"),
+  api_key = get_lastfm_credentials("key")
+)
 }
 \arguments{
 \item{username}{Your last.fm account username}
@@ -12,7 +15,7 @@ download_scrobbles(username, api_key)
 \item{api_key}{Your last.fm account api key}
 }
 \value{
-A dataframe of songs and assoicated metadata
+A dataframe of songs and associated metadata
 }
 \description{
 download_scrobbles
