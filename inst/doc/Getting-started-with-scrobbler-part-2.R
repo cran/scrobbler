@@ -1,19 +1,19 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  library(scrobbler)
 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  my_songs <- download_scrobbles(
 #    username = "your_username",
 #    api_key = "your_api_key"
 #    )
 
-## ---- echo=FALSE--------------------------------------------------------------
+## ----echo=FALSE---------------------------------------------------------------
 # Having issues rendering the .Rmd when loading data from csv, so just creating a short df here
 my_songs <- structure(list(song_mbid = c("192915d7-c2df-44f6-9e08-b7d80745bdd3", 
 "6dd374d1-e707-4de0-89b3-889fbb7d7bad", "45d25340-5791-4f93-a642-94494b057646", 
@@ -51,7 +51,7 @@ my_songs$X.attr.nowplaying <- NULL
 
 my_songs
 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  updated_songs <- update_scrobbles(data = my_songs,
 #                                    timestamp_column = "date_unix",
 #                                    username = "your_username",
